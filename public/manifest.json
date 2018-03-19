@@ -1,0 +1,9 @@
+{
+  "short_name": "Verkefni 5",
+  "name": "Verkefni 5",
+  "icons": [],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
