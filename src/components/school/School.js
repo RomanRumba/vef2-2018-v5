@@ -11,12 +11,14 @@ import './School.css';
 
 export default class School extends Component {
 
-  render() {
+  //
+  state = {
+    school:null,
+    loading: true,
+    error: false,
+  };
 
-    return (
-      <section className="school">
-        <p>útfæra</p>
-      </section>
-    );
-  }
+  // fáum route props frá <Route>
+  const { match } = this.props;
+  const school = match.params.school;
 }
