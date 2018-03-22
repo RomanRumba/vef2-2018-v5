@@ -18,6 +18,10 @@ nav a:hover {
   background: #f00;
 }
 
+nav .clicked {
+  background: #f00;
+}
+
 nav li {
   float:left;
 }

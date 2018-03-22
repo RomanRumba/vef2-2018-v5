@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import './Navigation.css';
 
-
 export default class Navigation extends Component {
 
   /* Getum ekki endurnýtt hluti her þannig það sem við notum
@@ -25,7 +24,7 @@ export default class Navigation extends Component {
       /* reynt að sækja gögn úr heroku hans óla ef það tekst
           þá vistum það og setjum loading á false */
       const unparsed = await this.fetchData();
-      const schools =  await this.parseNav(unparsed);
+      const schools =  this.parseNav(unparsed);
       this.setState({ schools, loading: false });
     } catch (e) {
       /* ef það voru villur sem komu upp við gripum þær
@@ -37,8 +36,7 @@ export default class Navigation extends Component {
   /* Notkun : parseNav(data)
      Fyrir  : data er jsbon obj sem hefur schools af tagi fylki sem stack
      Eftir  : byr til fylki af json obj þar sem hvert json obj er með schoolName og schoolLink */
-  // ég veit ekki afhverju þetta er async ef ég hef prófað allt en react kvartar nema ef þetta er async
-  async parseNav(data) {
+  parseNav(data) {
     const schools = data.schools;
     const navElms = [];
     schools.forEach(school => {
@@ -60,6 +58,10 @@ export default class Navigation extends Component {
     const response = await fetch(url); // beðið eftir gögnum
     const data = await response.json(); // ná i gögn
     return data; // skilað gögn
+  }
+
+  setFocus(name){
+    
   }
 
   /* Notað til að rendara hluta af siðuni */

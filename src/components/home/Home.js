@@ -34,7 +34,7 @@ export default class Home extends Component {
      Eftir  : sótt json obj sem á að innihalda stats sem er annar json obj
               og það er skilar stats json obj */
   async fetchData() {
-    const url = "https://vefforritun2-2018-v4-synilausn.herokuapp.com/stats";
+    const url = 'https://vefforritun2-2018-v4-synilausn.herokuapp.com/stats';
     const response = await fetch(url);
     const data = await response.json();
     return data.stats;
@@ -50,16 +50,16 @@ export default class Home extends Component {
     } = this.state;
     // ef gögnin eru að hlaðast þá birtum skilaboð
     if (loading) {
-      return (<div><span>hleð inn gögnum...</span><Helmet title="hleð inn gögnum..."></Helmet></div>);
+      return (<div><span>hleð inn gögnum...</span><Helmet title='hleð inn gögnum...'></Helmet></div>);
     }
     // ef það kom villa þá skilum villu
     if (error) {
-      return (<div><span>Villa við að sækja gögn</span><Helmet title="Villa við að sækja gögn"></Helmet></div>);
+      return (<div><span>Villa við að sækja gögn</span><Helmet title='Villa við að sækja gögn'></Helmet></div>);
     }
     // ef gögnin eru hlöðuð og það er eingin villa þá er hægt að byrta gögnin
     
     const statsRes =  (
-      <div class="home_container__stats">
+      <div class='home_container__stats'>
         <label><h3>Fjöldi prófa</h3><span>{stats.numTests}</span></label>
         <label><h3>Fjöldi nemandi i öllum prófum</h3> <span>{stats.numStudents}</span></label>
         <label><h3>Meðalfjöldi nemanda i prófi</h3> <span>{stats.averageStudents}</span></label>
@@ -68,7 +68,7 @@ export default class Home extends Component {
       </div>
     );
     // skilun þá navbar
-    return (<div class="home_container"><h1>Tölfræði</h1>{statsRes}<Helmet title="Próftöflur"></Helmet></div>);
+    return (<div class='home_container'><h1>Tölfræði</h1>{statsRes}<Helmet title='Próftöflur'></Helmet></div>);
   }
 
 }
