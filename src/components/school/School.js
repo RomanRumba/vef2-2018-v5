@@ -107,7 +107,9 @@ export default class School extends Component {
                   activeClick={this.activeClick(index)}
                 />
             ))}
-            <Link  to='\'>Heim</Link>
+            {/* Mjög stupid <Link> má ekki hafa einhverskonar padding og læti
+              þannig það þarf að wrappa það i div og gefa þvi clasa */}
+            <div className='department__wrapper_home'><Link to='/'>Heim</Link></div>
             <Helmet title={heading}></Helmet>
           </div>);
   }

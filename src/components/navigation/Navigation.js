@@ -23,10 +23,10 @@ export default class Navigation extends Component {
   }
 
   /* is invoked immediately after updating occurs  */
-  async componentDidUpdate(prevProps){
+  async shouldComponentUpdate(prevProps){
     if(this.props.location.pathname !== prevProps.location.pathname) {
       await this.getNewState();
-      // renderar ekki Nav
+      //return true;
     }
     return false;
   }
