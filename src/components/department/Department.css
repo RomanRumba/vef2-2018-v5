@@ -1,1 +1,33 @@
-/* útfæra */
+.department {
+  padding-top: 1.25em;
+  padding-bottom: 1.25em;
+  border-bottom: 1px solid #000;
+}
+
+.department__hidden {
+  display: none;
+}
+.department__table {
+  padding: 0.625em;
+  border-collapse: collapse;
+  width: 67%;
+  text-align: left;
+}
+
+@media only screen and (max-width: 800px) {
+    .department__table {
+      width: 100%;
+    }
+}
+
+.department__table__data {
+  font-family: 'Noto sans', sans-serif;
+}
+
+.department__table td, .department__table th {
+  padding: 0.625em;
+}
+
+.department__table tr:nth-child(even) { 
+  background-color: #eee;
+}

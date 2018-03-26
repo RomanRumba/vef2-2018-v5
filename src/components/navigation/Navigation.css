@@ -1,27 +1,22 @@
 /* útfæra */
 
 nav {
-  width:100%;
+  min-width: 350px;
+  padding: 0.625em;
   list-style: none;
-  background-color: black;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 nav  a {
-  display: block;
+  width: 20%;
 	padding: 15px 25px;
-  color: #fff;
-  text-decoration: none;
-}
-
-nav a:hover {
-  background: #f00;
+  text-decoration: underline;
 }
 
 nav .clicked {
-  background: #f00;
+  font-weight: bold;
 }
 
-nav li {
-  float:left;
-}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import NotFound from '../not-found';
 import Department from '../department';
 import Helmet from 'react-helmet';
+import { Link } from 'react-router-dom';
 import './School.css';
 
 export default class School extends Component {
@@ -11,10 +11,11 @@ export default class School extends Component {
      error gefur tilkynna ef það voru villur AÐ SÆKJA GÖGN
      notFound  gefur tilkynna ef Heroku skilar villu */
   state = {
-    school:null,
+    school: null,
     loading: true,
     error: false,
     notFound: false,
+    activeDeparment: null,
   };
 
   /* þetta keyrir þegar búið er að setja component upp í DOM
@@ -55,6 +56,21 @@ export default class School extends Component {
     const data = await response.json();
     return data;
   }
+
+  /* Notkun : this.activeClick(department)
+     Fyrir  : linkId er heiltölu bendill >= 0
+     Eftir  : uppfærir activeDeparment breytuna i state 
+              með department og ef þetta er núþegar sama department
+              þá er nullstilt activeDeparment */
+  activeClick = (department) => {
+    return (e) => {
+      if(department === this.state.activeDeparment ){
+        this.setState({ activeDeparment: null });
+      } else {
+        this.setState({ activeDeparment: department });
+      }
+    }
+  }
   
   render() {
   // sækji state til að vinna með
@@ -80,7 +96,20 @@ export default class School extends Component {
   const heading = school.school.heading + '-Próftöflur'; // by til Title
   const departments = school.school.departments;
 
-  return (<div>{JSON.stringify(school)}<Helmet title={heading}></Helmet></div>);
+  return (<div className='department__wrapper'>
+            <h2>{school.school.heading}</h2>
+              {departments.map((department, index) => (
+                <Department
+                  key={index}
+                  heading={department.heading}
+                  tests={department.tests}
+                  visible={this.state.activeDeparment === index}
+                  activeClick={this.activeClick(index)}
+                />
+            ))}
+            <Link  to='\'>Heim</Link>
+            <Helmet title={heading}></Helmet>
+          </div>);
   }
   
 }
