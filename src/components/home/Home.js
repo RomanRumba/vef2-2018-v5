@@ -33,7 +33,7 @@ export default class Home extends Component {
      Eftir  : sótt json obj sem á að innihalda stats sem er annar json obj
               og það er skilar stats json obj */
   async fetchData() {
-    const url = 'https://vefforritun2-2018-v4-synilausn.herokuapp.com/stats';
+    const url = `${process.env.REACT_APP_SERVICE_URL}stats`;
     const response = await fetch(url);
     const data = await response.json();
     return data.stats;

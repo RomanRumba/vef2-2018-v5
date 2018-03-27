@@ -21,18 +21,35 @@ export default class School extends Component {
   /* þetta keyrir þegar búið er að setja component upp í DOM
     reynum að sækja gögn úr heroku hans óla */
   async componentDidMount() {
+    return await this.getNewState();
+  }
+
+  /* is invoked immediately after updating occurs
+    here we get the opportunity to operate on the DOM when the component has been updated.
+    This is also a good place to do network requests as long as you compare the current props to previous props */
+  async componentDidUpdate(NextProps){
+    if(this.props.location.pathname !== NextProps.location.pathname) {
+      await this.getNewState();
+    }
+    return false;
+  }
+
+   /* Notkun : this.getNewState()
+     Fyrir  : ekkert 
+     Eftir  : sækir gögn af heroku hans óla og uppfærir state
+              Eftir þvi sem heroku skilaði */
+  async getNewState() {
     try {
       const unparsed = await this.fetchData(); // sækja gögn frá Heroku
       const legallink = await this.checkIfGoodData(unparsed);// ath ef gögnin voru fundin
       this.setState({ school:unparsed, loading: false, notFound:legallink });
     } catch (e) {
-      /* ef það voru villur sem komu upp við gripum þær
-         setjum error sem satt til að byrta þær og loading false */
+    /* ef það voru villur sem komu upp við gripum þær
+      setjum error sem satt til að byrta þær og loading false */
       console.error('Error fetching data', e);
       this.setState({ error: true, loading: false });
     }
   }
-
   /* Notkun : checkIfGoodData(data)
      Fyrir  : data er json obj sem 'getur' haft Property error
      Eftir  : skilar satt ef data á Property error 
@@ -51,7 +68,7 @@ export default class School extends Component {
   async fetchData() {
     const { match } = this.props;
     const school = match.params.school; // sæki link sem var slegið
-    const url = 'https://vefforritun2-2018-v4-synilausn.herokuapp.com/'+school;
+    const url = `${process.env.REACT_APP_SERVICE_URL}${school}`;
     const response = await fetch(url);
     const data = await response.json();
     return data;

@@ -19,23 +19,6 @@ export default class Navigation extends Component {
   /* þetta keyrir þegar búið er að setja component upp í DOM
     reynum að sækja gögn úr heroku hans óla */
   async componentDidMount() {
-    return await this.getNewState();
-  }
-
-  /* is invoked immediately after updating occurs  */
-  async shouldComponentUpdate(prevProps){
-    if(this.props.location.pathname !== prevProps.location.pathname) {
-      await this.getNewState();
-      //return true;
-    }
-    return false;
-  }
-
-  /* Notkun : this.getNewState()
-     Fyrir  : ekkert 
-     Eftir  : sækir gögn af heroku hans óla og uppfærir state
-              Eftir þvi sem heroku skilaði */
-  async getNewState() {
     try {
       /* reynt að sækja gögn úr heroku hans óla ef það tekst
         þá vistum það og setjum loading á false */
@@ -73,7 +56,7 @@ export default class Navigation extends Component {
      Eftir  : fer á Url sem er beðið og skilað gögnum
               frá Urli i json formmati */
   async fetchData() {
-    const  url = 'https://vefforritun2-2018-v4-synilausn.herokuapp.com/';
+    const  url = process.env.REACT_APP_SERVICE_URL;
     const response = await fetch(url); // beðið eftir gögnum
     const data = await response.json(); // ná i gögn
     return data; // skilað gögn
