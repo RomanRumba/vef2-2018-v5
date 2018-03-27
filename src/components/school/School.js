@@ -67,6 +67,7 @@ export default class School extends Component {
               json obj sem Heroku skilar */
   async fetchData() {
     const { match } = this.props;
+    console.log(this.props);
     const school = match.params.school; // sæki link sem var slegið
     const url = `${process.env.REACT_APP_SERVICE_URL}${school}`;
     const response = await fetch(url);
