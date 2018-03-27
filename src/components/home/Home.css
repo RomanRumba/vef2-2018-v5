@@ -1,1 +1,26 @@
 /* útfæra */
+
+.home_container {
+  padding: 0.625em;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 2.5em;
+}
+
+.home_container__stats {
+  width: 35%;
+  padding-top: 1.25em;
+}
+
+@media only screen and (max-width: 800px) {
+    .home_container__stats {
+      width: 100%;
+    }
+}
+
+.home_container__stats__el {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.625em;
+}

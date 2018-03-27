@@ -29,3 +29,7 @@ a {
   text-decoration: underline;
   color: #000;
 }
+
+.heading_center {
+  text-align: center;
+}

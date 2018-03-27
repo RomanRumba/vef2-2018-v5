@@ -1,1 +1,8 @@
-/* útfæra */
+.department__wrapper {
+  width: 100%;
+  padding-top: 1.25em;
+}
+
+.department__wrapper_home {
+  padding-top: 1.25em;
+}
