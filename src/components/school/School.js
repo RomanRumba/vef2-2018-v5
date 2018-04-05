@@ -10,6 +10,7 @@ export default class School extends Component {
      loading gefur tilkynna ef það er að sækja gögn á neti
      error gefur tilkynna ef það voru villur AÐ SÆKJA GÖGN
      notFound  gefur tilkynna ef Heroku skilar villu */
+  
   state = {
     school: null,
     loading: true,

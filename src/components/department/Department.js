@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Department.css';
 
 export default class Exams extends Component {
 
+  static propTypes = {
+    visible: PropTypes.bool,
+    heading: PropTypes.string,
+    activeClick: PropTypes.func,
+    tests: PropTypes.array,
+  }
+
   render() {
-    /*  */
     const isactive = this.props.visible ? 'department__table' : 'department__hidden';
     const plusminus = this.props.visible ? '-' : '+';
     return (
